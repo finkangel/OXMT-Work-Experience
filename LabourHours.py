@@ -4,16 +4,14 @@ import matplotlib.pyplot as plt; plt.rcdefaults()
 import matplotlib.pyplot as plt
 
 data_frame = pandas.read_csv("engine_work_orders_with_labour_hrs.csv")
-# print(data_frame)
+print(data_frame)
 
 print ("")
 
 don = (data_frame.loc[data_frame["Assigned Maintenance Person"] == "Donald Knuth", "Labour Hours"]).tolist()
 # print(don)
-print("Average Labour Hours for Donald Knuth: ")
-print(sum(don) / len(don))
-print("Median Labour Hours for Donald Knuth: ")
-print(statistics.median(don))
+print("Average Labour Hours for Donald Knuth: " + str(sum(don) / len(don)))
+print("Median Labour Hours for Donald Knuth: " + str(statistics.median(don)))
 
 print("")
 

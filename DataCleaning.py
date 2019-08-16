@@ -1,4 +1,5 @@
 import pandas
+import statistics
 import matplotlib.pyplot as plt; plt.rcdefaults()
 
 data_frame = pandas.read_csv("unclean_work_orders_with_labour_hrs.csv")
@@ -40,5 +41,16 @@ names.boxplot(showfliers=False)
 data_frame.iloc[24:35].set_index("Assigned Maintenance Person")[["Labour Hours"]].plot.bar()
 names = data_frame.iloc[24:35].groupby("Assigned Maintenance Person")
 names.boxplot(showfliers=False)
+
+def predict(name, machine):
+    filtered_by_part_and_name = data_frame[
+        (data_frame["Assigned Maintenance Person"] == name) & (data_frame["Main Part Replaced"] == machine)]
+    return statistics.median(filtered_by_part_and_name["Labour Hours"])
+
+print("")
+
+input_name = input("Enter a name: ")
+input_part = input("Enter a part: ")
+print(predict(input_name, input_part))
 
 plt.show()
